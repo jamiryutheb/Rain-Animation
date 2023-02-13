@@ -10,17 +10,31 @@ public class Drop {
     float thickness;
     int distance;
     int len;
-
+    boolean diagonal;
+    boolean rightOrLeft;
     public Drop(){
+        if(random() < 0.4){
+            diagonal = true;
+            if(random() < 0.5){
+                rightOrLeft = true;
+            }
+        }
         distance = (int) (random() * 10);
         x = (int) (random() * Rain.RainPanel.SCREEN_WIDTH);
         y = (int) (random() * Rain.RainPanel.SCREEN_HEIGHT);
-        thickness = (float) (random() * distance + 0.5);
-        speed = (int) (random() * distance + 2);
-        len = (int) (random() * distance + 13);
+        thickness = (float) (random() * distance + 0.1);
+        speed = 3 + (int) (random() * distance + thickness);
+        len = (int) (random() * distance + 13 - thickness);
     }
 
     public void fall(){
+        if(diagonal){
+            if(rightOrLeft) {
+                x += 1;
+            }else{
+                x -= 1;
+            }
+        }
         y = y + 3 * speed;
         speed += 0.5;
         if(y > Rain.RainPanel.SCREEN_HEIGHT)

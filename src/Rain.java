@@ -14,7 +14,7 @@ public class Rain extends JFrame {
         this.add(new RainPanel());
         this.setTitle("Rain");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+//        this.setLocationRelativeTo(null);
         this.pack();
         this.setResizable(false);
         this.setVisible(true);
@@ -31,14 +31,15 @@ public class Rain extends JFrame {
         public RainPanel(){
 
             try {
-                bgImage = ImageIO.read(new File("src\\image\\bg.jpg"));
+                bgImage = ImageIO.read(new File("src\\image\\bg1.jpg"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
 
             this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-//            this.setBackground(new Color(0xA7A7B8));
+//            this.setBackground(new Color(24, 48, 64));
+            this.setBackground(Color.BLACK);
 
             drops = new Drop[700];
             for (int i = 0; i < drops.length ; i++) drops[i] = new Drop();
@@ -95,9 +96,9 @@ public class Rain extends JFrame {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(bgImage, 0, 0, 1200, 700, null);
             resume();
-            g.setColor(new Color(0x08666A));
+//            g.drawImage(bgImage, 0, 0, 1200, 700, null);
+            g.setColor(new Color(101, 110, 117));
             for (Drop drop : drops) drop.show(g);
         }
 
